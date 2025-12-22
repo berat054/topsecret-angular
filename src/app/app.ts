@@ -17,6 +17,7 @@ export class App implements AfterViewInit, OnDestroy {
   @ViewChild('sliderHandle') sliderHandleRef!: ElementRef<HTMLDivElement>;
   @ViewChild('beforeImage') beforeImageRef!: ElementRef<HTMLDivElement>;
   @ViewChild('sectionsWrapper') sectionsWrapperRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('videoBackground') videoRef!: ElementRef<HTMLVideoElement>;
 
   sliderPosition = signal(50);
   isDragging = signal(false);
@@ -43,7 +44,25 @@ export class App implements AfterViewInit, OnDestroy {
       setTimeout(() => {
         this.initFullpageScroll();
         this.initAnimations();
+        this.playBackgroundVideo();
       }, 100);
+    }
+  }
+
+  private playBackgroundVideo(): void {
+    const video = this.videoRef?.nativeElement;
+    if (video) {
+      video.muted = true; // Ensure muted for autoplay
+      video.play().catch(() => {
+        // If autoplay fails, try on user interaction
+        const playOnInteraction = () => {
+          video.play();
+          document.removeEventListener('click', playOnInteraction);
+          document.removeEventListener('touchstart', playOnInteraction);
+        };
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+      });
     }
   }
 
