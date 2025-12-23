@@ -26,7 +26,7 @@ export class GiftCard {
   private confettiTriggered = false;
   private slotAnimationStarted = false;
   
-  readonly giftCode = 'RA-4DELJKXQJ9CRFPV3';
+  readonly giftCode = 'RA-AQH2FSBYPA38NEP3';
   private readonly slotChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-';
 
   onMouseMove(event: MouseEvent): void {
