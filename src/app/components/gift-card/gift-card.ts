@@ -20,7 +20,7 @@ export class GiftCard {
   private confettiTriggered = false;
   private slotAnimationStarted = false;
   
-  readonly giftCode = '[BURAYA-KOD-YAZ]';
+  readonly giftCode = 'RA-4DELJKXQJ9CRFPV3';
   private readonly slotChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-';
 
   openBox(): void {
@@ -76,6 +76,8 @@ export class GiftCard {
       if (index >= codeArray.length) {
         clearInterval(revealInterval);
         this.isSlotSpinning.set(false);
+        // Animasyon bitince doğru kodu göster (güvenlik için)
+        this.displayedCode.set(codeArray);
         return;
       }
 
@@ -83,15 +85,16 @@ export class GiftCard {
       this.spinAndReveal(index, codeArray[index]);
       this.currentSlotIndex.set(index + 1);
       index++;
-    }, 120);
+    }, 100);
   }
 
   private spinAndReveal(index: number, finalChar: string): void {
-    const currentCode = [...this.displayedCode()];
     let spinCount = 0;
-    const maxSpins = 5;
+    const maxSpins = 4;
 
     const spinInterval = setInterval(() => {
+      const currentCode = [...this.displayedCode()];
+      
       if (spinCount >= maxSpins) {
         clearInterval(spinInterval);
         currentCode[index] = finalChar;
@@ -102,7 +105,7 @@ export class GiftCard {
       currentCode[index] = this.getRandomChar();
       this.displayedCode.set([...currentCode]);
       spinCount++;
-    }, 50);
+    }, 40);
   }
 
   private getRandomChar(): string {
