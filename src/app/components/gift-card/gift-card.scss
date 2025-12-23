@@ -275,6 +275,43 @@ $radianite-glow: rgba(23, 241, 215, 0.5);
     animation: codeGlow 2s ease-in-out infinite;
     text-align: center;
     word-break: break-all;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba($valorant-red, 0.25);
+        border-color: rgba($valorant-red, 0.5);
+        transform: scale(1.02);
+    }
+
+    &.copied {
+        background: rgba($radianite-cyan, 0.2);
+        border-color: rgba($radianite-cyan, 0.5);
+        animation: none;
+    }
+}
+
+.copy-feedback {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: $radianite-cyan;
+    color: $valorant-dark;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+
+    &.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 @keyframes codeGlow {

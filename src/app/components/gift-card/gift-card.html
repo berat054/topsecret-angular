@@ -47,8 +47,11 @@
                 VP KODUN HAZIR
                 <span class="radianite-icon">◆</span>
             </div>
-            <div class="gift-code">[BURAYA-KOD-YAZ]</div>
-            <div class="code-hint">Riot Games'te kullan</div>
+            <div class="gift-code" (click)="copyCode($event)" [class.copied]="isCopied()">
+                {{ giftCode }}
+                <span class="copy-feedback" [class.show]="isCopied()">Kopyalandı!</span>
+            </div>
+            <div class="code-hint">{{ isCopied() ? '✓ Panoya kopyalandı' : 'Kopyalamak için koda tıkla' }}</div>
         </div>
     </div>
 </div>

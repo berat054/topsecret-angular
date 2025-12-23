@@ -11,7 +11,10 @@ import confetti from 'canvas-confetti';
 })
 export class GiftCard {
   isCardFlipped = signal(false);
+  isCopied = signal(false);
   private confettiTriggered = false;
+  
+  readonly giftCode = '[BURAYA-KOD-YAZ]';
 
   flipCard(): void {
     this.isCardFlipped.set(!this.isCardFlipped());
@@ -63,5 +66,26 @@ export class GiftCard {
         colors: ['#ff4655', '#17f1d7', '#ece8e1', '#0f1923']
       });
     }, 250);
+  }
+
+  copyCode(event: Event): void {
+    event.stopPropagation(); // Kartın flip olmasını engelle
+    
+    navigator.clipboard.writeText(this.giftCode).then(() => {
+      this.isCopied.set(true);
+      
+      // Mini confetti
+      confetti({
+        particleCount: 30,
+        spread: 50,
+        origin: { y: 0.7 },
+        colors: ['#17f1d7', '#ece8e1']
+      });
+      
+      // 2 saniye sonra reset
+      setTimeout(() => {
+        this.isCopied.set(false);
+      }, 2000);
+    });
   }
 }
