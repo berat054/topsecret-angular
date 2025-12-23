@@ -267,16 +267,51 @@
       </div>
     </section>
 
-    <!-- Section 14: Gift -->
+    <!-- Section 14: Lafı uzatmayalım -->
     <section class="section section-14" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Lafı</span>
           <span class="title-word">çok</span>
-          <span class="title-word">uzatmayalım,</span><br>
-          <span class="title-word">hediyen</span>
-          <span class="title-word">burada</span>
+          <span class="title-word">uzatmayalım</span>
         </h2>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 16.5l-6-6h12l-6 6z" />
+          </svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- Section 15: Hediye açıklaması -->
+    <section class="section section-15" #sectionRef>
+      <div class="section-content">
+        <h2 class="section-title">
+          <span class="title-word">Belki</span>
+          <span class="title-word">seni</span>
+          <span class="title-word">tatmin</span>
+          <span class="title-word">etmez</span><br>
+          <span class="title-word">ama</span>
+          <span class="title-word">bu</span>
+          <span class="title-word">da</span>
+          <span class="title-word">benim</span>
+          <span class="title-word">hediyem</span>
+        </h2>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 16.5l-6-6h12l-6 6z" />
+          </svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- Section 16: Gift -->
+    <section class="section section-16" #sectionRef>
+      <div class="section-content">
         <app-gift-card #giftCardComponent></app-gift-card>
       </div>
     </section>
@@ -285,7 +320,7 @@
   <!-- Section dots navigation -->
   <nav class="section-dots" [class.shifted]="currentSectionIndex() === 5" role="navigation"
     aria-label="Sayfa navigasyonu">
-    @for (section of [1,2,3,4,5,6,7,8,9,10,11,12,13,14]; track section) {
+    @for (section of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]; track section) {
     <button class="dot" [class.active]="currentSectionIndex() === section - 1" (click)="navigateToSection(section - 1)"
       [attr.aria-label]="'Bölüm ' + section"
       [attr.aria-current]="currentSectionIndex() === section - 1 ? 'step' : null">
