@@ -238,8 +238,8 @@ $radianite-glow: rgba(23, 241, 215, 0.5);
 
 .gift-card {
     position: relative;
-    width: 340px;
-    height: 220px;
+    width: 380px;
+    height: 240px;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -248,13 +248,13 @@ $radianite-glow: rgba(23, 241, 215, 0.5);
     }
 
     @media (max-width: 768px) {
-        width: 300px;
-        height: 200px;
+        width: 340px;
+        height: 220px;
     }
 
     @media (max-width: 480px) {
-        width: 280px;
-        height: 180px;
+        width: 300px;
+        height: 200px;
     }
 }
 
@@ -512,16 +512,18 @@ $radianite-glow: rgba(23, 241, 215, 0.5);
 .slot-container {
     display: flex;
     justify-content: center;
-    gap: 2px;
+    gap: 1px;
     overflow: hidden;
+    flex-wrap: wrap;
+    max-width: 100%;
 }
 
 .slot-char {
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    font-size: clamp(0.7rem, 2vw, 0.95rem);
     font-weight: 700;
     color: $valorant-cream;
-    width: 1em;
+    width: 0.9em;
     height: 1.4em;
     display: flex;
     align-items: center;
