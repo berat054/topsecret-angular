@@ -22,7 +22,7 @@ export class App implements AfterViewInit, OnDestroy {
   @ViewChildren('sectionRef') sectionRefs!: QueryList<ElementRef<HTMLElement>>;
 
   currentSectionIndex = signal(0);
-  readonly sectionCount = 9;
+  readonly sectionCount = 13;
 
   private isBrowser: boolean;
   private isScrolling = false;
@@ -195,8 +195,8 @@ export class App implements AfterViewInit, OnDestroy {
         { opacity: 1, scale: 1, rotateY: 0, duration: 1, delay: 0.5, ease: 'elastic.out(1, 0.5)' }
       );
 
-      // Trigger confetti on gift section (index 8)
-      if (index === 8 && !this.confettiTriggered) {
+      // Trigger confetti on gift section (index 12)
+      if (index === 12 && !this.confettiTriggered) {
         this.confettiTriggered = true;
         setTimeout(() => this.giftCardRef?.triggerEntryConfetti(), 800);
       }

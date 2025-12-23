@@ -118,8 +118,97 @@
       </div>
     </section>
 
-    <!-- Section 7: İşler -->
+    <!-- Section 7: Apaçi Mustafa -->
     <section class="section section-7" #sectionRef>
+      <div class="section-content">
+        <h2 class="section-title">
+          <span class="title-word">Apaçi</span>
+          <span class="title-word">Mustafa</span><br>
+          <span class="title-word">klişeleştiği</span>
+          <span class="title-word">için</span><br>
+          <span class="title-word">koymak</span>
+          <span class="title-word">istemedim.</span>
+        </h2>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 16.5l-6-6h12l-6 6z" />
+          </svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- Section 8: Video Açıklaması -->
+    <section class="section section-8" #sectionRef>
+      <div class="section-content">
+        <h2 class="section-title">
+          <span class="title-word">Biraz</span>
+          <span class="title-word">da</span>
+          <span class="title-word">son</span>
+          <span class="title-word">güne</span><br>
+          <span class="title-word">bıraktığım</span>
+          <span class="title-word">için</span><br>
+          <span class="title-word">çok</span>
+          <span class="title-word">fazla</span>
+          <span class="title-word">video</span><br>
+          <span class="title-word">çekemedim.</span>
+        </h2>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 16.5l-6-6h12l-6 6z" />
+          </svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- Section 9: Doktor Açıklaması -->
+    <section class="section section-9" #sectionRef>
+      <div class="section-content">
+        <h2 class="section-title">
+          <span class="title-word">Doktor,</span>
+          <span class="title-word">videoyu</span>
+          <span class="title-word">story</span><br>
+          <span class="title-word">atarak</span>
+          <span class="title-word">olayı</span>
+          <span class="title-word">patlatsa</span>
+          <span class="title-word">da</span><br>
+          <span class="title-word">yine</span>
+          <span class="title-word">de</span>
+          <span class="title-word">güzel</span><br>
+          <span class="title-word">olduğunu</span>
+          <span class="title-word">düşünüyorum.</span>
+        </h2>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 16.5l-6-6h12l-6 6z" />
+          </svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- Section 10: Neyse -->
+    <section class="section section-10" #sectionRef>
+      <div class="section-content">
+        <h2 class="section-title minimal-title">
+          <span class="title-word">Neyse</span>
+        </h2>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 16.5l-6-6h12l-6 6z" />
+          </svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- Section 11: İşler -->
+    <section class="section section-11" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Ben</span>
@@ -138,8 +227,8 @@
       </div>
     </section>
 
-    <!-- Section 8: Epstein -->
-    <section class="section section-8" #sectionRef>
+    <!-- Section 12: Epstein -->
+    <section class="section section-12" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Biz</span>
@@ -160,8 +249,8 @@
       </div>
     </section>
 
-    <!-- Section 9: Gift -->
-    <section class="section section-9" #sectionRef>
+    <!-- Section 13: Gift -->
+    <section class="section section-13" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Lafı</span>
@@ -178,7 +267,7 @@
   <!-- Section dots navigation -->
   <nav class="section-dots" [class.shifted]="currentSectionIndex() === 5" role="navigation"
     aria-label="Sayfa navigasyonu">
-    @for (section of [1,2,3,4,5,6,7,8,9]; track section) {
+    @for (section of [1,2,3,4,5,6,7,8,9,10,11,12,13]; track section) {
     <button class="dot" [class.active]="currentSectionIndex() === section - 1" (click)="navigateToSection(section - 1)"
       [attr.aria-label]="'Bölüm ' + section"
       [attr.aria-current]="currentSectionIndex() === section - 1 ? 'step' : null">
