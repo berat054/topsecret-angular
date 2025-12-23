@@ -1,57 +1,88 @@
-<div class="gift-card-wrapper" (click)="flipCard()" role="button" aria-label="Hediye kartını çevirmek için tıklayın"
-    [attr.aria-pressed]="isCardFlipped()">
-    
-    <!-- Valorant themed glow -->
-    <div class="valorant-glow"></div>
-    
-    <!-- Floating VP particles -->
-    <div class="vp-particles">
-        <span class="particle"></span>
-        <span class="particle"></span>
-        <span class="particle"></span>
-        <span class="particle"></span>
-        <span class="particle"></span>
-    </div>
-
-    <div class="gift-card" [class.flipped]="isCardFlipped()">
-        <!-- Front Face -->
-        <div class="gift-card-face gift-card-front">
-            <!-- Valorant pattern overlay -->
-            <div class="valorant-pattern"></div>
-            
-            <!-- Agent silhouette -->
-            <div class="agent-silhouette"></div>
-            
-            <!-- VP Icon -->
-            <div class="vp-icon">
-                <img src="assets/Valorant_Points.webp" alt="Valorant Points" />
-            </div>
-            
-            <div class="vp-label">VALORANT POINTS</div>
-            <div class="vp-amount">VP</div>
-            
-            <div class="tap-hint">
-                <span class="radianite-icon">◆</span>
-                Kodu görmek için dokun
+<div class="gift-box-container">
+    <!-- Gift Box (Initial State) -->
+    <div class="gift-box" [class.opened]="isBoxOpened()" (click)="openBox()" 
+         *ngIf="!isBoxOpened()" role="button" aria-label="Hediye kutusunu aç">
+        
+        <!-- Box Lid -->
+        <div class="box-lid">
+            <div class="lid-top"></div>
+            <div class="lid-bow">
+                <div class="bow-left"></div>
+                <div class="bow-right"></div>
+                <div class="bow-center"></div>
             </div>
         </div>
         
-        <!-- Back Face -->
-        <div class="gift-card-face gift-card-back">
-            <div class="valorant-pattern"></div>
-            <div class="valorant-logo">
-                <img src="assets/Valorant Logo.svg" alt="Valorant" />
+        <!-- Box Body -->
+        <div class="box-body">
+            <div class="box-ribbon-vertical"></div>
+            <div class="box-ribbon-horizontal"></div>
+        </div>
+        
+        <div class="box-hint">
+            <span class="radianite-icon">◆</span>
+            Kutuyu aç
+            <span class="radianite-icon">◆</span>
+        </div>
+    </div>
+
+    <!-- Card (After Box Opens) -->
+    <div class="gift-card-wrapper" *ngIf="isBoxOpened()" [class.revealed]="isBoxOpened()"
+         (click)="flipCard()" role="button" aria-label="Hediye kartını çevirmek için tıklayın"
+         [attr.aria-pressed]="isCardFlipped()">
+        
+        <!-- Valorant themed glow -->
+        <div class="valorant-glow"></div>
+        
+        <!-- Floating VP particles -->
+        <div class="vp-particles">
+            <span class="particle"></span>
+            <span class="particle"></span>
+            <span class="particle"></span>
+            <span class="particle"></span>
+            <span class="particle"></span>
+        </div>
+
+        <div class="gift-card" [class.flipped]="isCardFlipped()">
+            <!-- Front Face -->
+            <div class="gift-card-face gift-card-front">
+                <!-- Valorant pattern overlay -->
+                <div class="valorant-pattern"></div>
+                
+                <!-- Agent silhouette -->
+                <div class="agent-silhouette"></div>
+                
+                <!-- VP Icon -->
+                <div class="vp-icon">
+                    <img src="assets/Valorant_Points.webp" alt="Valorant Points" />
+                </div>
+                
+                <div class="vp-label">VALORANT POINTS</div>
+                <div class="vp-amount">VP</div>
+                
+                <div class="tap-hint">
+                    <span class="radianite-icon">◆</span>
+                    Kodu görmek için dokun
+                </div>
             </div>
-            <div class="reveal-text">
-                <span class="radianite-icon">◆</span>
-                VP KODUN HAZIR
-                <span class="radianite-icon">◆</span>
+            
+            <!-- Back Face -->
+            <div class="gift-card-face gift-card-back">
+                <div class="valorant-pattern"></div>
+                <div class="valorant-logo">
+                    <img src="assets/Valorant Logo.svg" alt="Valorant" />
+                </div>
+                <div class="reveal-text">
+                    <span class="radianite-icon">◆</span>
+                    VP KODUN HAZIR
+                    <span class="radianite-icon">◆</span>
+                </div>
+                <div class="gift-code" (click)="copyCode($event)" [class.copied]="isCopied()">
+                    {{ giftCode }}
+                    <span class="copy-feedback" [class.show]="isCopied()">Kopyalandı!</span>
+                </div>
+                <div class="code-hint">{{ isCopied() ? '✓ Panoya kopyalandı' : 'Kopyalamak için koda tıkla' }}</div>
             </div>
-            <div class="gift-code" (click)="copyCode($event)" [class.copied]="isCopied()">
-                {{ giftCode }}
-                <span class="copy-feedback" [class.show]="isCopied()">Kopyalandı!</span>
-            </div>
-            <div class="code-hint">{{ isCopied() ? '✓ Panoya kopyalandı' : 'Kopyalamak için koda tıkla' }}</div>
         </div>
     </div>
 </div>

@@ -1,10 +1,11 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-gift-card',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './gift-card.html',
   styleUrl: './gift-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -12,9 +13,24 @@ import confetti from 'canvas-confetti';
 export class GiftCard {
   isCardFlipped = signal(false);
   isCopied = signal(false);
+  isBoxOpened = signal(false);
   private confettiTriggered = false;
   
   readonly giftCode = '[BURAYA-KOD-YAZ]';
+
+  openBox(): void {
+    this.isBoxOpened.set(true);
+    
+    // Kutu açılınca confetti
+    setTimeout(() => {
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 },
+        colors: ['#ff4655', '#17f1d7', '#ece8e1', '#ff4655']
+      });
+    }, 300);
+  }
 
   flipCard(): void {
     this.isCardFlipped.set(!this.isCardFlipped());
