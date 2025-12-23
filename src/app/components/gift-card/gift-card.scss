@@ -1,12 +1,88 @@
+// Valorant color palette
+$valorant-red: #ff4655;
+$valorant-dark: #0f1923;
+$valorant-cream: #ece8e1;
+$radianite-cyan: #17f1d7;
+$radianite-glow: rgba(23, 241, 215, 0.5);
+
 .gift-card-wrapper {
-    perspective: 1000px;
+    perspective: 1200px;
     cursor: pointer;
+    position: relative;
+}
+
+// Valorant themed glow
+.valorant-glow {
+    position: absolute;
+    inset: -15px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, $valorant-red, $radianite-cyan, $valorant-red);
+    background-size: 300% 300%;
+    animation: valorantGlow 4s ease infinite;
+    z-index: -1;
+    filter: blur(25px);
+    opacity: 0.7;
+}
+
+@keyframes valorantGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+        opacity: 0.5;
+    }
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.8;
+    }
+}
+
+// Floating VP particles
+.vp-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 24px;
+
+    .particle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: $radianite-cyan;
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        opacity: 0;
+        animation: floatParticle 3s ease-in-out infinite;
+
+        &:nth-child(1) { left: 10%; animation-delay: 0s; }
+        &:nth-child(2) { left: 30%; animation-delay: 0.6s; }
+        &:nth-child(3) { left: 50%; animation-delay: 1.2s; }
+        &:nth-child(4) { left: 70%; animation-delay: 1.8s; }
+        &:nth-child(5) { left: 90%; animation-delay: 2.4s; }
+    }
+}
+
+@keyframes floatParticle {
+    0% {
+        bottom: -10px;
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: scale(1);
+    }
 }
 
 .gift-card {
     position: relative;
-    width: 320px;
-    height: 200px;
+    width: 340px;
+    height: 220px;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -15,6 +91,11 @@
     }
 
     @media (max-width: 768px) {
+        width: 300px;
+        height: 200px;
+    }
+
+    @media (max-width: 480px) {
         width: 280px;
         height: 180px;
     }
@@ -23,151 +104,190 @@
 .gift-card-face {
     position: absolute;
     inset: 0;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    box-shadow:
-        0 25px 50px rgba(0, 0, 0, 0.3),
-        inset 0 0 30px rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    overflow: hidden;
 }
 
-.gift-card-front {
-    .tap-hint {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.6);
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-
-        .tap-icon {
-            width: 20px;
-            height: 20px;
-            animation: tapPulse 1.5s ease-in-out infinite;
-        }
-    }
-}
-
-@keyframes tapPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-
-    50% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-}
-
-.gift-card-back {
-    background: linear-gradient(135deg,
-            rgba(255, 107, 107, 0.2) 0%,
-            rgba(254, 202, 87, 0.2) 50%,
-            rgba(72, 219, 251, 0.2) 100%);
-    transform: rotateY(180deg);
-}
-
-.gift-card-glow {
+// Valorant diagonal pattern
+.valorant-pattern {
     position: absolute;
-    inset: -8px;
-    border-radius: 32px;
-    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #ff6b6b);
-    background-size: 400% 400%;
-    animation: glowPulse 3s ease infinite;
-    z-index: -1;
-    filter: blur(20px);
-    opacity: 0.6;
+    inset: 0;
+    background: 
+        repeating-linear-gradient(
+            135deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 70, 85, 0.03) 20px,
+            rgba(255, 70, 85, 0.03) 40px
+        );
+    pointer-events: none;
 }
 
-@keyframes glowPulse {
+// Front face
+.gift-card-front {
+    background: linear-gradient(145deg, #1a2634 0%, $valorant-dark 50%, #0a0f14 100%);
+    border: 2px solid rgba($valorant-red, 0.4);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 40px rgba($valorant-red, 0.2);
 
-    0%,
-    100% {
-        background-position: 0% 50%;
-        transform: scale(1);
-    }
-
-    50% {
-        background-position: 100% 50%;
-        transform: scale(1.05);
+    // Agent silhouette background
+    .agent-silhouette {
+        position: absolute;
+        right: -20px;
+        bottom: -20px;
+        width: 180px;
+        height: 180px;
+        background: linear-gradient(135deg, rgba($valorant-red, 0.1), transparent);
+        clip-path: polygon(
+            50% 0%, 65% 10%, 70% 5%, 75% 15%, 100% 20%,
+            95% 40%, 100% 60%, 90% 70%, 95% 100%,
+            60% 95%, 50% 100%, 40% 95%, 5% 100%,
+            10% 70%, 0% 60%, 5% 40%, 0% 20%,
+            25% 15%, 30% 5%, 35% 10%
+        );
+        opacity: 0.5;
     }
 }
 
-.gift-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 1rem;
-    animation: bounce 2s ease infinite;
+.vp-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 0.8rem;
+    animation: vpFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba($valorant-cream, 0.4));
 
     svg {
         width: 100%;
         height: 100%;
-        fill: currentColor;
-        color: #fff;
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
     }
 }
 
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
+@keyframes vpFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
     }
-
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-8px) rotate(2deg);
     }
 }
 
-.gift-label {
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 0.5rem;
-}
-
-.gift-code {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: clamp(1.2rem, 4vw, 1.8rem);
+.vp-label {
+    font-size: 0.75rem;
     font-weight: 700;
-    color: #fff;
-    padding: 1rem 1.5rem;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    letter-spacing: 0.15em;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: codePulse 1.5s ease-in-out infinite;
-    text-align: center;
-    word-break: break-all;
+    letter-spacing: 0.4em;
+    color: rgba($valorant-cream, 0.6);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
 }
 
-@keyframes codePulse {
+.vp-amount {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $valorant-cream;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba($valorant-red, 0.5);
+}
 
-    0%,
-    100% {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+.tap-hint {
+    font-size: 0.85rem;
+    color: rgba($valorant-cream, 0.5);
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: hintPulse 2s ease-in-out infinite;
+}
+
+.radianite-icon {
+    color: $radianite-cyan;
+    font-size: 0.7rem;
+    animation: radianitePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes radianitePulse {
+    0%, 100% {
+        opacity: 0.5;
+        text-shadow: 0 0 5px $radianite-glow;
     }
-
     50% {
-        text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.4);
+        opacity: 1;
+        text-shadow: 0 0 15px $radianite-glow, 0 0 25px $radianite-glow;
+    }
+}
+
+@keyframes hintPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+// Back face
+.gift-card-back {
+    background: linear-gradient(145deg, #1a2634 0%, $valorant-dark 100%);
+    border: 2px solid rgba($radianite-cyan, 0.4);
+    transform: rotateY(180deg);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 40px rgba($radianite-cyan, 0.2);
+}
+
+.valorant-logo {
+    width: 60px;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+
+    svg {
+        width: 100%;
+        height: auto;
     }
 }
 
 .reveal-text {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: rgba($valorant-cream, 0.7);
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.gift-code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    font-weight: 700;
+    color: $valorant-cream;
+    padding: 0.8rem 1.2rem;
+    background: rgba($valorant-red, 0.15);
+    border-radius: 8px;
+    letter-spacing: 0.12em;
+    border: 1px solid rgba($valorant-red, 0.3);
+    animation: codeGlow 2s ease-in-out infinite;
+    text-align: center;
+    word-break: break-all;
+}
+
+@keyframes codeGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba($valorant-red, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba($valorant-red, 0.5), 0 0 40px rgba($valorant-red, 0.2);
+    }
+}
+
+.code-hint {
+    font-size: 0.7rem;
+    color: rgba($valorant-cream, 0.4);
+    margin-top: 0.8rem;
+    letter-spacing: 0.1em;
 }

@@ -1,29 +1,64 @@
 <div class="gift-card-wrapper" (click)="flipCard()" role="button" aria-label="Hediye kartını çevirmek için tıklayın"
     [attr.aria-pressed]="isCardFlipped()">
-    <div class="gift-card-glow"></div>
+    
+    <!-- Valorant themed glow -->
+    <div class="valorant-glow"></div>
+    
+    <!-- Floating VP particles -->
+    <div class="vp-particles">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+    </div>
+
     <div class="gift-card" [class.flipped]="isCardFlipped()">
         <!-- Front Face -->
         <div class="gift-card-face gift-card-front">
-            <div class="gift-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                        d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+            <!-- Valorant pattern overlay -->
+            <div class="valorant-pattern"></div>
+            
+            <!-- Agent silhouette -->
+            <div class="agent-silhouette"></div>
+            
+            <!-- VP Icon -->
+            <div class="vp-icon">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="50,10 90,90 50,70 10,90" fill="url(#vpGradient)" />
+                    <defs>
+                        <linearGradient id="vpGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ece8e1"/>
+                            <stop offset="100%" style="stop-color:#b8b3a7"/>
+                        </linearGradient>
+                    </defs>
                 </svg>
             </div>
-            <div class="gift-label">VALORANT VP</div>
+            
+            <div class="vp-label">VALORANT POINTS</div>
+            <div class="vp-amount">VP</div>
+            
             <div class="tap-hint">
-                <svg class="tap-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                    aria-hidden="true">
-                    <path
-                        d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.21 0-.59-.34-1.15-.91-1.41z" />
-                </svg>
+                <span class="radianite-icon">◆</span>
                 Kodu görmek için dokun
             </div>
         </div>
+        
         <!-- Back Face -->
         <div class="gift-card-face gift-card-back">
-            <div class="reveal-text">🎉 İşte Senin Kodun!</div>
+            <div class="valorant-pattern"></div>
+            <div class="valorant-logo">
+                <svg viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 25L15 5H20L12 22H25L23 25H5Z" fill="#ff4655"/>
+                </svg>
+            </div>
+            <div class="reveal-text">
+                <span class="radianite-icon">◆</span>
+                VP KODUN HAZIR
+                <span class="radianite-icon">◆</span>
+            </div>
             <div class="gift-code">[BURAYA-KOD-YAZ]</div>
+            <div class="code-hint">Riot Games'te kullan</div>
         </div>
     </div>
 </div>

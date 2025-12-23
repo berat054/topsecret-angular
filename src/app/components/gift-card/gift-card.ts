@@ -22,7 +22,7 @@ export class GiftCard {
           particleCount: 100,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1']
+          colors: ['#ff4655', '#17f1d7', '#ece8e1', '#ff4655', '#17f1d7']
         });
       }, 400);
     }
@@ -53,14 +53,14 @@ export class GiftCard {
         ...defaults,
         particleCount,
         origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-        colors: ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1']
+        colors: ['#ff4655', '#17f1d7', '#ece8e1', '#0f1923']
       });
 
       confetti({
         ...defaults,
         particleCount,
         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-        colors: ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1']
+        colors: ['#ff4655', '#17f1d7', '#ece8e1', '#0f1923']
       });
     }, 250);
   }
