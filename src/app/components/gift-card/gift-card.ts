@@ -14,9 +14,14 @@ export class GiftCard {
   isCardFlipped = signal(false);
   isCopied = signal(false);
   isBoxOpened = signal(false);
+  isSlotSpinning = signal(false);
+  currentSlotIndex = signal(0);
+  displayedCode = signal<string[]>([]);
   private confettiTriggered = false;
+  private slotAnimationStarted = false;
   
   readonly giftCode = '[BURAYA-KOD-YAZ]';
+  private readonly slotChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-';
 
   openBox(): void {
     this.isBoxOpened.set(true);
@@ -33,18 +38,75 @@ export class GiftCard {
   }
 
   flipCard(): void {
-    this.isCardFlipped.set(!this.isCardFlipped());
-
     if (this.isCardFlipped()) {
-      setTimeout(() => {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#ff4655', '#17f1d7', '#ece8e1', '#ff4655', '#17f1d7']
-        });
-      }, 400);
+      // Geri çevirme - animasyon yok
+      this.isCardFlipped.set(false);
+      return;
     }
+
+    this.isCardFlipped.set(true);
+    
+    // Slot animasyonunu başlat
+    if (!this.slotAnimationStarted) {
+      this.slotAnimationStarted = true;
+      this.startSlotAnimation();
+    }
+
+    setTimeout(() => {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff4655', '#17f1d7', '#ece8e1', '#ff4655', '#17f1d7']
+      });
+    }, 400);
+  }
+
+  private startSlotAnimation(): void {
+    const codeArray = this.giftCode.split('');
+    this.isSlotSpinning.set(true);
+    this.currentSlotIndex.set(0);
+    
+    // Başlangıçta rastgele karakterler göster
+    this.displayedCode.set(codeArray.map(() => this.getRandomChar()));
+
+    // Her karakteri sırayla yerleştir
+    let index = 0;
+    const revealInterval = setInterval(() => {
+      if (index >= codeArray.length) {
+        clearInterval(revealInterval);
+        this.isSlotSpinning.set(false);
+        return;
+      }
+
+      // Mevcut karakteri spin ettir ve sonra yerleştir
+      this.spinAndReveal(index, codeArray[index]);
+      this.currentSlotIndex.set(index + 1);
+      index++;
+    }, 120);
+  }
+
+  private spinAndReveal(index: number, finalChar: string): void {
+    const currentCode = [...this.displayedCode()];
+    let spinCount = 0;
+    const maxSpins = 5;
+
+    const spinInterval = setInterval(() => {
+      if (spinCount >= maxSpins) {
+        clearInterval(spinInterval);
+        currentCode[index] = finalChar;
+        this.displayedCode.set([...currentCode]);
+        return;
+      }
+
+      currentCode[index] = this.getRandomChar();
+      this.displayedCode.set([...currentCode]);
+      spinCount++;
+    }, 50);
+  }
+
+  private getRandomChar(): string {
+    return this.slotChars[Math.floor(Math.random() * this.slotChars.length)];
   }
 
   triggerEntryConfetti(): void {

@@ -77,8 +77,14 @@
                     VP KODUN HAZIR
                     <span class="radianite-icon">◆</span>
                 </div>
-                <div class="gift-code" (click)="copyCode($event)" [class.copied]="isCopied()">
-                    {{ giftCode }}
+                <div class="gift-code-slot" (click)="copyCode($event)" [class.copied]="isCopied()">
+                    <div class="slot-container">
+                        @for (char of displayedCode(); track $index) {
+                            <div class="slot-char" [class.spinning]="isSlotSpinning() && $index >= currentSlotIndex()">
+                                <span class="char-display">{{ char }}</span>
+                            </div>
+                        }
+                    </div>
                     <span class="copy-feedback" [class.show]="isCopied()">Kopyalandı!</span>
                 </div>
                 <div class="code-hint">{{ isCopied() ? '✓ Panoya kopyalandı' : 'Kopyalamak için koda tıkla' }}</div>

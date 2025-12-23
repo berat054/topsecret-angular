@@ -486,3 +486,72 @@ $radianite-glow: rgba(23, 241, 215, 0.5);
     margin-top: 0.8rem;
     letter-spacing: 0.1em;
 }
+
+// Slot Machine Styles
+.gift-code-slot {
+    position: relative;
+    padding: 0.6rem 0.8rem;
+    background: rgba($valorant-red, 0.15);
+    border-radius: 8px;
+    border: 1px solid rgba($valorant-red, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba($valorant-red, 0.25);
+        border-color: rgba($valorant-red, 0.5);
+        transform: scale(1.02);
+    }
+
+    &.copied {
+        background: rgba($radianite-cyan, 0.2);
+        border-color: rgba($radianite-cyan, 0.5);
+    }
+}
+
+.slot-container {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.slot-char {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    font-weight: 700;
+    color: $valorant-cream;
+    width: 1em;
+    height: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-shadow: 0 0 10px rgba($valorant-red, 0.5);
+
+    .char-display {
+        display: block;
+        transition: transform 0.05s ease;
+    }
+
+    &.spinning .char-display {
+        animation: slotSpin 0.1s linear infinite;
+    }
+}
+
+@keyframes slotSpin {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
