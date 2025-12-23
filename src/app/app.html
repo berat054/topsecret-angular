@@ -139,18 +139,21 @@
           <div class="carousel-track-wrapper">
             <div class="carousel-track" [style.transform]="'translateX(' + (-currentVideoIndex() * 100) + '%)'">
               @for (video of fanVideos; track $index) {
-              <div class="video-card">
+              <div class="video-card" [attr.data-card-index]="$index">
                 <h3 class="fan-name">
-                  <span class="title-word">{{ video.name }}</span>
+                  <span class="title-word video-title">{{ video.name }}</span>
                 </h3>
                 @if (video.subtitle) {
-                <span class="fan-subtitle">{{ video.subtitle }}</span>
+                <span class="fan-subtitle title-word video-subtitle">{{ video.subtitle }}</span>
                 }
-                <div class="video-player-container">
-                  <video controls playsinline>
+                <div class="video-player-container" (click)="playVideo($event, $index)">
+                  <video #videoPlayer playsinline [attr.data-index]="$index">
                     <source [src]="video.src" type="video/mp4">
                     Tarayıcınız video oynatmayı desteklemiyor.
                   </video>
+                  <div class="video-play-overlay" [class.hidden]="playingVideoIndex() === $index">
+                    <span class="material-symbols-outlined play-icon">play_circle</span>
+                  </div>
                 </div>
               </div>
               }
@@ -268,7 +271,7 @@
   </div>
 
   <!-- Section dots navigation -->
-  <div class="section-dots">
+  <div class="section-dots" [class.shifted]="currentSectionIndex() === 5">
     @for (section of [1,2,3,4,5,6,7,8,9]; track section) {
     <div class="dot" [class.active]="currentSectionIndex() === section - 1" (click)="navigateToSection(section - 1)">
     </div>

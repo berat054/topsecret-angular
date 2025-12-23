@@ -26,10 +26,11 @@ export class App implements AfterViewInit, OnDestroy {
 
   // Video carousel state
   currentVideoIndex = signal(0);
+  playingVideoIndex = signal<number | null>(null);
   fanVideos = [
-    { name: 'Serkan Kocakoç', subtitle: '', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510373/Bastografi_uk7hlf.mp4' },
-    { name: 'Hüseyin "Doktor" İskeçe', subtitle: '', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510575/Doktor_l4dux8.mp4' },
-    { name: 'Ramazan Durmuş', subtitle: '', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510425/Ramazan_Abi_hobmsx.mp4' },
+    { name: 'Serkan Kocakoç', subtitle: 'Bastografi', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510373/Bastografi_uk7hlf.mp4' },
+    { name: 'Hüseyin İskeçe', subtitle: 'Doktor', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510575/Doktor_l4dux8.mp4' },
+    { name: 'Ramazan Durmuş', subtitle: 'Metrobüs Şoförü', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510425/Ramazan_Abi_hobmsx.mp4' },
     { name: 'Yusuf Bilgin', subtitle: 'UlaşımPark/Kocaeli', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510417/Yusuf_Abi_sht9wy.mp4' },
     { name: 'İbrahim Yılmaz', subtitle: 'Adaray Şefi', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510358/%C4%B0brahim_Y%C4%B1lmaz_ysu3s2.mp4' }
   ];
@@ -293,19 +294,82 @@ export class App implements AfterViewInit, OnDestroy {
   // Video carousel navigation
   nextVideo(): void {
     if (this.currentVideoIndex() < this.fanVideos.length - 1) {
-      this.currentVideoIndex.set(this.currentVideoIndex() + 1);
+      this.pauseCurrentVideo();
+      const newIndex = this.currentVideoIndex() + 1;
+      this.currentVideoIndex.set(newIndex);
+      this.playingVideoIndex.set(null);
+      this.animateVideoCard(newIndex);
     }
   }
 
   prevVideo(): void {
     if (this.currentVideoIndex() > 0) {
-      this.currentVideoIndex.set(this.currentVideoIndex() - 1);
+      this.pauseCurrentVideo();
+      const newIndex = this.currentVideoIndex() - 1;
+      this.currentVideoIndex.set(newIndex);
+      this.playingVideoIndex.set(null);
+      this.animateVideoCard(newIndex);
     }
   }
 
   goToVideo(index: number): void {
-    if (index >= 0 && index < this.fanVideos.length) {
+    if (index >= 0 && index < this.fanVideos.length && index !== this.currentVideoIndex()) {
+      this.pauseCurrentVideo();
       this.currentVideoIndex.set(index);
+      this.playingVideoIndex.set(null);
+      this.animateVideoCard(index);
+    }
+  }
+
+  playVideo(event: Event, index: number): void {
+    const container = event.currentTarget as HTMLElement;
+    const video = container.querySelector('video') as HTMLVideoElement;
+
+    if (video && this.playingVideoIndex() !== index) {
+      // Pause any other playing video first
+      this.pauseCurrentVideo();
+
+      video.controls = true;
+      video.play();
+      this.playingVideoIndex.set(index);
+    }
+  }
+
+  private animateVideoCard(index: number): void {
+    // Delay to let slide animation complete
+    setTimeout(() => {
+      const card = document.querySelector(`[data-card-index="${index}"]`);
+      if (card) {
+        const title = card.querySelector('.video-title');
+        const subtitle = card.querySelector('.video-subtitle');
+
+        if (title) {
+          gsap.fromTo(title,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
+          );
+        }
+
+        if (subtitle) {
+          gsap.fromTo(subtitle,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.5, delay: 0.15, ease: 'power2.out' }
+          );
+        }
+      }
+    }, 300);
+  }
+
+  private pauseCurrentVideo(): void {
+    const playingIndex = this.playingVideoIndex();
+    if (playingIndex !== null) {
+      const videos = document.querySelectorAll('.video-card video') as NodeListOf<HTMLVideoElement>;
+      videos.forEach((video, idx) => {
+        if (idx === playingIndex) {
+          video.pause();
+          video.controls = false;
+        }
+      });
     }
   }
 

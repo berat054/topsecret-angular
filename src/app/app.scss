@@ -114,6 +114,11 @@ $gradient-7: linear-gradient(180deg, #8e44ad 0%, #9b59b6 30%, #e91e63 60%, #ff6b
     display: flex;
     flex-direction: column;
     gap: 12px;
+    transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.shifted {
+        top: 25%;
+    }
 
     @media (max-width: 768px) {
         right: 1rem;
@@ -303,6 +308,52 @@ $gradient-7: linear-gradient(180deg, #8e44ad 0%, #9b59b6 30%, #e91e63 60%, #ff6b
             max-width: 90vw;
             max-height: 60vh;
         }
+    }
+}
+
+// Video Play Overlay
+.video-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.2);
+
+        .play-icon {
+            transform: scale(1.1);
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+        border-radius: 12px;
+    }
+}
+
+.play-icon {
+    font-size: 100px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+
+    @media (max-width: 768px) {
+        font-size: 80px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 64px;
     }
 }
 
