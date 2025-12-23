@@ -17,11 +17,53 @@ export class GiftCard {
   isSlotSpinning = signal(false);
   currentSlotIndex = signal(0);
   displayedCode = signal<string[]>([]);
+  
+  // Holographic effect
+  mouseX = signal(0);
+  mouseY = signal(0);
+  isHovering = signal(false);
+  
   private confettiTriggered = false;
   private slotAnimationStarted = false;
   
   readonly giftCode = 'RA-4DELJKXQJ9CRFPV3';
   private readonly slotChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-';
+
+  onMouseMove(event: MouseEvent): void {
+    const card = event.currentTarget as HTMLElement;
+    const rect = card.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    this.mouseX.set(x);
+    this.mouseY.set(y);
+    this.isHovering.set(true);
+  }
+
+  onMouseLeave(): void {
+    this.isHovering.set(false);
+    this.mouseX.set(50);
+    this.mouseY.set(50);
+  }
+
+  getCardTransform(): string {
+    if (!this.isHovering() || this.isCardFlipped()) {
+      return this.isCardFlipped() ? 'rotateY(180deg)' : '';
+    }
+    const rotateX = (this.mouseY() - 50) / 10;
+    const rotateY = (this.mouseX() - 50) / 10;
+    return `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+  }
+
+  getHoloGradient(): string {
+    const x = this.mouseX();
+    const y = this.mouseY();
+    return `radial-gradient(circle at ${x}% ${y}%, 
+      rgba(255, 70, 85, 0.3) 0%, 
+      rgba(23, 241, 215, 0.2) 25%, 
+      rgba(236, 232, 225, 0.15) 50%, 
+      rgba(255, 70, 85, 0.1) 75%, 
+      transparent 100%)`;
+  }
 
   openBox(): void {
     this.isBoxOpened.set(true);

@@ -1,7 +1,10 @@
 <div class="gift-box-container">
     <!-- Card (Directly visible, no box) -->
     <div class="gift-card-wrapper revealed"
-         (click)="flipCard()" role="button" aria-label="Hediye kartını çevirmek için tıklayın"
+         (click)="flipCard()" 
+         (mousemove)="onMouseMove($event)"
+         (mouseleave)="onMouseLeave()"
+         role="button" aria-label="Hediye kartını çevirmek için tıklayın"
          [attr.aria-pressed]="isCardFlipped()">
         
         <!-- Valorant themed glow -->
@@ -16,9 +19,13 @@
             <span class="particle"></span>
         </div>
 
-        <div class="gift-card" [class.flipped]="isCardFlipped()">
+        <div class="gift-card" [class.flipped]="isCardFlipped()"
+             [style.transform]="getCardTransform()">
             <!-- Front Face -->
             <div class="gift-card-face gift-card-front">
+                <!-- Holographic overlay -->
+                <div class="holo-overlay" [style.background]="getHoloGradient()"></div>
+                
                 <!-- Valorant pattern overlay -->
                 <div class="valorant-pattern"></div>
                 
@@ -41,6 +48,9 @@
             
             <!-- Back Face -->
             <div class="gift-card-face gift-card-back">
+                <!-- Holographic overlay -->
+                <div class="holo-overlay" [style.background]="getHoloGradient()"></div>
+                
                 <div class="valorant-pattern"></div>
                 <div class="valorant-logo">
                     <img src="assets/Valorant Logo.svg" alt="Valorant" />
