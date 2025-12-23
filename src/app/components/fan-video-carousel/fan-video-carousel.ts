@@ -60,6 +60,9 @@ export class FanVideoCarousel {
   }
 
   private animateVideoCard(index: number): void {
+    // Sadece ilk video için animasyon
+    if (index !== 0) return;
+
     setTimeout(() => {
       const card = document.querySelector(`[data-card-index="${index}"]`);
       if (card) {

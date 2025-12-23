@@ -285,7 +285,17 @@ $font-primary: 'Outfit', 'Inter', sans-serif;
     }
 }
 
-// Staggered text animation
+// Staggered text animation - sadece ilk video için
+.video-card {
+    // İlk video hariç diğerleri baştan görünür
+    &:not([data-card-index="0"]) {
+        .title-word {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
 .title-word {
     display: inline-block;
     opacity: 0;
