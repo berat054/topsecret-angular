@@ -164,9 +164,10 @@ $radianite-glow: rgba(23, 241, 215, 0.5);
     animation: vpFloat 3s ease-in-out infinite;
     filter: drop-shadow(0 0 15px rgba($valorant-cream, 0.4));
 
-    svg {
+    img {
         width: 100%;
         height: 100%;
+        object-fit: contain;
     }
 }
 
