@@ -27,11 +27,11 @@ export class App implements AfterViewInit, OnDestroy {
   // Video carousel state
   currentVideoIndex = signal(0);
   fanVideos = [
-    { name: 'Serkan Kocakoç', subtitle: '', src: 'assets/fan-messages/Bastografi.mp4' },
-    { name: 'Hüseyin "Doktor" İskeçe', subtitle: '', src: 'assets/fan-messages/Doktor.mp4' },
-    { name: 'Ramazan Durmuş', subtitle: '', src: 'assets/fan-messages/Ramazan Abi.mp4' },
-    { name: 'Yusuf Bilgin', subtitle: 'UlaşımPark/Kocaeli', src: 'assets/fan-messages/Yusuf Abi.mp4' },
-    { name: 'İbrahim Yılmaz', subtitle: 'Adaray Şefi', src: 'assets/fan-messages/İbrahim Yılmaz.mp4' }
+    { name: 'Serkan Kocakoç', subtitle: '', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510373/Bastografi_uk7hlf.mp4' },
+    { name: 'Hüseyin "Doktor" İskeçe', subtitle: '', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510575/Doktor_l4dux8.mp4' },
+    { name: 'Ramazan Durmuş', subtitle: '', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510425/Ramazan_Abi_hobmsx.mp4' },
+    { name: 'Yusuf Bilgin', subtitle: 'UlaşımPark/Kocaeli', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510417/Yusuf_Abi_sht9wy.mp4' },
+    { name: 'İbrahim Yılmaz', subtitle: 'Adaray Şefi', src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510358/%C4%B0brahim_Y%C4%B1lmaz_ysu3s2.mp4' }
   ];
 
   private isBrowser: boolean;
