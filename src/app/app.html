@@ -123,17 +123,54 @@
       </div>
     </section>
 
-    <!-- Section 6: Fan Video 1 -->
-    <section class="section section-6 fan-video-section">
+    <!-- Section 6: Fan Videos Carousel -->
+    <section class="section section-6 fan-video-carousel-section">
       <div class="section-content">
-        <h3 class="fan-name">
-          <span class="title-word">Serkan Kocakoç</span>
-        </h3>
-        <div class="video-player-container">
-          <video controls playsinline>
-            <source src="assets/videos/fan1.mp4" type="video/mp4">
-            Tarayıcınız video oynatmayı desteklemiyor.
-          </video>
+        <div class="video-carousel-container">
+          <!-- Left Arrow -->
+          <button class="carousel-arrow carousel-arrow-left" (click)="prevVideo()"
+            [class.hidden]="currentVideoIndex() === 0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+
+          <!-- Carousel Track -->
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" [style.transform]="'translateX(' + (-currentVideoIndex() * 100) + '%)'">
+              @for (video of fanVideos; track $index) {
+              <div class="video-card">
+                <h3 class="fan-name">
+                  <span class="title-word">{{ video.name }}</span>
+                </h3>
+                @if (video.subtitle) {
+                <span class="fan-subtitle">{{ video.subtitle }}</span>
+                }
+                <div class="video-player-container">
+                  <video controls playsinline>
+                    <source [src]="video.src" type="video/mp4">
+                    Tarayıcınız video oynatmayı desteklemiyor.
+                  </video>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+
+          <!-- Right Arrow -->
+          <button class="carousel-arrow carousel-arrow-right" (click)="nextVideo()"
+            [class.hidden]="currentVideoIndex() === fanVideos.length - 1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Carousel Dots -->
+        <div class="carousel-dots">
+          @for (video of fanVideos; track $index) {
+          <div class="carousel-dot" [class.active]="currentVideoIndex() === $index" (click)="goToVideo($index)"></div>
+          }
         </div>
       </div>
       <div class="scroll-indicator">
@@ -145,30 +182,8 @@
       </div>
     </section>
 
-    <!-- Section 7: Fan Video 2 -->
-    <section class="section section-7 fan-video-section">
-      <div class="section-content">
-        <h3 class="fan-name">
-          <span class="title-word">Hüseyin "Doktor" İskeçe</span>
-        </h3>
-        <div class="video-player-container">
-          <video controls playsinline>
-            <source src="assets/videos/fan2.mp4" type="video/mp4">
-            Tarayıcınız video oynatmayı desteklemiyor.
-          </video>
-        </div>
-      </div>
-      <div class="scroll-indicator">
-        <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 16.5l-6-6h12l-6 6z" />
-          </svg>
-        </span>
-      </div>
-    </section>
-
-    <!-- Section 8: İşler -->
-    <section class="section section-8">
+    <!-- Section 7: İşler -->
+    <section class="section section-7">
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Ben</span>
@@ -187,8 +202,8 @@
       </div>
     </section>
 
-    <!-- Section 9: Epstein -->
-    <section class="section section-9">
+    <!-- Section 8: Epstein -->
+    <section class="section section-8">
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Biz</span>
@@ -209,8 +224,8 @@
       </div>
     </section>
 
-    <!-- Section 10: Gift -->
-    <section class="section section-10">
+    <!-- Section 9: Gift -->
+    <section class="section section-9">
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Lafı</span>
@@ -254,7 +269,7 @@
 
   <!-- Section dots navigation -->
   <div class="section-dots">
-    @for (section of [1,2,3,4,5,6,7,8,9,10]; track section) {
+    @for (section of [1,2,3,4,5,6,7,8,9]; track section) {
     <div class="dot" [class.active]="currentSectionIndex() === section - 1" (click)="navigateToSection(section - 1)">
     </div>
     }

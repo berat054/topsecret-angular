@@ -24,6 +24,16 @@ export class App implements AfterViewInit, OnDestroy {
   currentSectionIndex = signal(0);
   isCardFlipped = signal(false);
 
+  // Video carousel state
+  currentVideoIndex = signal(0);
+  fanVideos = [
+    { name: 'Serkan Kocakoç', subtitle: '', src: 'assets/fan-messages/Bastografi.mp4' },
+    { name: 'Hüseyin "Doktor" İskeçe', subtitle: '', src: 'assets/fan-messages/Doktor.mp4' },
+    { name: 'Ramazan Durmuş', subtitle: '', src: 'assets/fan-messages/Ramazan Abi.mp4' },
+    { name: 'Yusuf Bilgin', subtitle: 'UlaşımPark/Kocaeli', src: 'assets/fan-messages/Yusuf Abi.mp4' },
+    { name: 'İbrahim Yılmaz', subtitle: 'Adaray Şefi', src: 'assets/fan-messages/İbrahim Yılmaz.mp4' }
+  ];
+
   private isBrowser: boolean;
   private isScrolling = false;
   private sections: HTMLElement[] = [];
@@ -220,8 +230,8 @@ export class App implements AfterViewInit, OnDestroy {
         { opacity: 1, scale: 1, rotateY: 0, duration: 1, delay: 0.5, ease: 'elastic.out(1, 0.5)' }
       );
 
-      // Trigger confetti on section 7
-      if (index === 6 && !this.confettiTriggered) {
+      // Trigger confetti on section 9 (Gift section)
+      if (index === 8 && !this.confettiTriggered) {
         this.confettiTriggered = true;
         setTimeout(() => this.fireConfetti(), 800);
       }
@@ -277,6 +287,25 @@ export class App implements AfterViewInit, OnDestroy {
           colors: ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1']
         });
       }, 400);
+    }
+  }
+
+  // Video carousel navigation
+  nextVideo(): void {
+    if (this.currentVideoIndex() < this.fanVideos.length - 1) {
+      this.currentVideoIndex.set(this.currentVideoIndex() + 1);
+    }
+  }
+
+  prevVideo(): void {
+    if (this.currentVideoIndex() > 0) {
+      this.currentVideoIndex.set(this.currentVideoIndex() - 1);
+    }
+  }
+
+  goToVideo(index: number): void {
+    if (index >= 0 && index < this.fanVideos.length) {
+      this.currentVideoIndex.set(index);
     }
   }
 
