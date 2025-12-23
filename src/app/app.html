@@ -1,15 +1,10 @@
-<div class="birthday-app">
-  <!-- Video Background -->
-  <div class="video-background">
-    <div class="video-overlay"></div>
-    <video #videoBackground autoplay muted loop playsinline preload="auto" crossorigin="anonymous"
-      src="https://res.cloudinary.com/dmfya9jbf/video/upload/v1766437860/background_5min_edulim.mp4">
-    </video>
-  </div>
+<div class="top-secret-app">
+  <!-- Video Background Component -->
+  <app-video-background></app-video-background>
 
   <div class="sections-wrapper" #sectionsWrapper>
     <!-- Section 1: Intro -->
-    <section class="section section-1">
+    <section class="section section-1" #sectionRef>
       <div class="section-content">
         <h1 class="section-title mega-title">
           <span class="title-word">Doğum</span>
@@ -23,7 +18,7 @@
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -31,7 +26,7 @@
     </section>
 
     <!-- Section 2: Response -->
-    <section class="section section-2">
+    <section class="section section-2" #sectionRef>
       <div class="section-content">
         <h2 class="section-title fade-title">
           <span class="title-word">Öylede</span>
@@ -41,7 +36,7 @@
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -49,7 +44,7 @@
     </section>
 
     <!-- Section 3: Before/After Slider -->
-    <section class="section section-3">
+    <section class="section section-3" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Bazen</span>
@@ -57,25 +52,11 @@
           <span class="title-word">çektiğini</span><br>
           <span class="title-word">düşünüyorum</span>
         </h2>
-        <div class="slider-container" #slider (mousedown)="onSliderMouseDown($event)"
-          (touchstart)="onSliderMouseDown($event)">
-          <div class="slider-after">
-            <img src="assets/after.png" alt="After" draggable="false">
-          </div>
-          <div class="slider-before" #beforeImage [style.width.%]="sliderPosition()">
-            <img src="assets/before.png" alt="Before" draggable="false">
-          </div>
-          <div class="slider-handle" #sliderHandle [style.left.%]="sliderPosition()">
-            <div class="handle-line"></div>
-            <div class="handle-circle">
-              <span class="handle-arrows">◀ ▶</span>
-            </div>
-          </div>
-        </div>
+        <app-before-after-slider></app-before-after-slider>
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -83,7 +64,7 @@
     </section>
 
     <!-- Section 4: Neyse -->
-    <section class="section section-4">
+    <section class="section section-4" #sectionRef>
       <div class="section-content">
         <h2 class="section-title minimal-title">
           <span class="title-word">Neyse</span>
@@ -91,7 +72,7 @@
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -99,7 +80,7 @@
     </section>
 
     <!-- Section 5: Hayranlarından Mesaj -->
-    <section class="section section-5 fan-message-intro">
+    <section class="section section-5 fan-message-intro" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Hayranlarından</span>
@@ -108,7 +89,7 @@
           <span class="title-word">var</span>
         </h2>
         <div class="message-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path
               d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
           </svg>
@@ -116,7 +97,7 @@
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -124,61 +105,13 @@
     </section>
 
     <!-- Section 6: Fan Videos Carousel -->
-    <section class="section section-6 fan-video-carousel-section">
+    <section class="section section-6 fan-video-carousel-section" #sectionRef>
       <div class="section-content">
-        <div class="video-carousel-container">
-          <!-- Left Arrow -->
-          <button class="carousel-arrow carousel-arrow-left" (click)="prevVideo()"
-            [class.hidden]="currentVideoIndex() === 0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-            </svg>
-          </button>
-
-          <!-- Carousel Track -->
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" [style.transform]="'translateX(' + (-currentVideoIndex() * 100) + '%)'">
-              @for (video of fanVideos; track $index) {
-              <div class="video-card" [attr.data-card-index]="$index">
-                <h3 class="fan-name">
-                  <span class="title-word video-title">{{ video.name }}</span>
-                </h3>
-                @if (video.subtitle) {
-                <span class="fan-subtitle title-word video-subtitle">{{ video.subtitle }}</span>
-                }
-                <div class="video-player-container" (click)="playVideo($event, $index)">
-                  <video #videoPlayer playsinline [attr.data-index]="$index">
-                    <source [src]="video.src" type="video/mp4">
-                    Tarayıcınız video oynatmayı desteklemiyor.
-                  </video>
-                  <div class="video-play-overlay" [class.hidden]="playingVideoIndex() === $index">
-                    <span class="material-symbols-outlined play-icon">play_circle</span>
-                  </div>
-                </div>
-              </div>
-              }
-            </div>
-          </div>
-
-          <!-- Right Arrow -->
-          <button class="carousel-arrow carousel-arrow-right" (click)="nextVideo()"
-            [class.hidden]="currentVideoIndex() === fanVideos.length - 1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-            </svg>
-          </button>
-        </div>
-
-        <!-- Carousel Dots -->
-        <div class="carousel-dots">
-          @for (video of fanVideos; track $index) {
-          <div class="carousel-dot" [class.active]="currentVideoIndex() === $index" (click)="goToVideo($index)"></div>
-          }
-        </div>
+        <app-fan-video-carousel></app-fan-video-carousel>
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -186,7 +119,7 @@
     </section>
 
     <!-- Section 7: İşler -->
-    <section class="section section-7">
+    <section class="section section-7" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Ben</span>
@@ -198,7 +131,7 @@
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -206,7 +139,7 @@
     </section>
 
     <!-- Section 8: Epstein -->
-    <section class="section section-8">
+    <section class="section section-8" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Biz</span>
@@ -220,7 +153,7 @@
       </div>
       <div class="scroll-indicator">
         <span class="scroll-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 16.5l-6-6h12l-6 6z" />
           </svg>
         </span>
@@ -228,7 +161,7 @@
     </section>
 
     <!-- Section 9: Gift -->
-    <section class="section section-9">
+    <section class="section section-9" #sectionRef>
       <div class="section-content">
         <h2 class="section-title">
           <span class="title-word">Lafı</span>
@@ -237,44 +170,19 @@
           <span class="title-word">hediyen</span>
           <span class="title-word">burada</span>
         </h2>
-        <div class="gift-card-wrapper" (click)="flipCard()">
-          <div class="gift-card-glow"></div>
-          <div class="gift-card" [class.flipped]="isCardFlipped()">
-            <!-- Front Face -->
-            <div class="gift-card-face gift-card-front">
-              <div class="gift-icon">
-                <!-- Gamepad Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
-                </svg>
-              </div>
-              <div class="gift-label">VALORANT VP</div>
-              <div class="tap-hint">
-                <!-- Tap Icon -->
-                <svg class="tap-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.21 0-.59-.34-1.15-.91-1.41z" />
-                </svg>
-                Kodu görmek için dokun
-              </div>
-            </div>
-            <!-- Back Face -->
-            <div class="gift-card-face gift-card-back">
-              <div class="reveal-text">🎉 İşte Senin Kodun!</div>
-              <div class="gift-code">[BURAYA-KOD-YAZ]</div>
-            </div>
-          </div>
-        </div>
+        <app-gift-card #giftCardComponent></app-gift-card>
       </div>
     </section>
   </div>
 
   <!-- Section dots navigation -->
-  <div class="section-dots" [class.shifted]="currentSectionIndex() === 5">
+  <nav class="section-dots" [class.shifted]="currentSectionIndex() === 5" role="navigation"
+    aria-label="Sayfa navigasyonu">
     @for (section of [1,2,3,4,5,6,7,8,9]; track section) {
-    <div class="dot" [class.active]="currentSectionIndex() === section - 1" (click)="navigateToSection(section - 1)">
-    </div>
+    <button class="dot" [class.active]="currentSectionIndex() === section - 1" (click)="navigateToSection(section - 1)"
+      [attr.aria-label]="'Bölüm ' + section"
+      [attr.aria-current]="currentSectionIndex() === section - 1 ? 'step' : null">
+    </button>
     }
-  </div>
+  </nav>
 </div>

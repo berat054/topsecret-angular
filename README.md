@@ -1,59 +1,106 @@
-# BirthdaySite
+# 🔐 Top Secret
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+> *Özel bir doğum günü sürprizi web sitesi*
 
-## Development server
+[![Angular](https://img.shields.io/badge/Angular-21-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-3.14-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://gsap.com/)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white)](https://berat054.github.io/topsecret-angular/)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## ✨ Özellikler
+
+| Özellik | Açıklama |
+|---------|----------|
+| 🎬 **Video Carousel** | Horizontal swipe ile fan videoları |
+| 🖼️ **Before/After Slider** | Sürüklenebilir karşılaştırma |
+| 🎁 **Flip Card** | 3D çevirme animasyonu ile hediye kartı |
+| 🎊 **Confetti** | Kutlama efektleri |
+| 📱 **Responsive** | Mobil & masaüstü uyumlu |
+| ♿ **Accessible** | ARIA attributes ile erişilebilirlik |
+
+---
+
+## 🏗️ Mimari
+
+```
+src/app/
+├── components/
+│   ├── video-background/      # Arka plan videosu
+│   ├── before-after-slider/   # Öncesi/sonrası karşılaştırma
+│   ├── fan-video-carousel/    # Video carousel
+│   └── gift-card/             # Hediye kartı
+├── models/
+│   └── fan-video.interface.ts # Tip tanımları
+├── data/
+│   └── videos.data.ts         # Video verileri
+├── app.ts                     # Ana component (scroll yönetimi)
+├── app.html
+└── app.scss
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Başlangıç
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Gereksinimler
 
-```bash
-ng generate component component-name
-```
+- Node.js 20+
+- npm 10+
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Kurulum
 
 ```bash
-ng build
+# Bağımlılıkları yükle
+npm install
+
+# Geliştirme sunucusunu başlat
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Tarayıcıda [http://localhost:4200](http://localhost:4200) adresini aç.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Build
 
 ```bash
-ng test
+# Production build
+npm run build
+
+# GitHub Pages deploy
+ng build --configuration production --base-href /topsecret-angular/
+npx angular-cli-ghpages --dir=dist/top-secret/browser
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🛠️ Teknolojiler
 
-```bash
-ng e2e
-```
+| Teknoloji | Kullanım |
+|-----------|----------|
+| **Angular 21** | Component framework |
+| **GSAP** | Scroll & text animasyonları |
+| **Canvas Confetti** | Kutlama efektleri |
+| **Material Symbols** | İkonlar |
+| **Cloudinary** | Video CDN |
+| **GitHub Pages** | Hosting |
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 📝 Notlar
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Videolar Cloudinary CDN üzerinden sunuluyor
+- `OnPush` change detection stratejisi ile optimize edildi
+- Fullpage scroll ile section geçişleri
+
+---
+
+## 📄 Lisans
+
+Bu proje özel kullanım içindir.
+
+---
+
+<div align="center">
+  <sub>Made with ❤️ for a special birthday</sub>
+</div>

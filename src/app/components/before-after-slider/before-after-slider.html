@@ -1,0 +1,16 @@
+<div class="slider-container" #slider (mousedown)="onSliderMouseDown($event)" (touchstart)="onSliderMouseDown($event)"
+    role="slider" aria-label="Öncesi ve sonrası karşılaştırma" [attr.aria-valuenow]="sliderPosition()" aria-valuemin="0"
+    aria-valuemax="100">
+    <div class="slider-after">
+        <img src="assets/after.png" alt="Sonrası" draggable="false">
+    </div>
+    <div class="slider-before" [style.width.%]="sliderPosition()">
+        <img src="assets/before.png" alt="Öncesi" draggable="false">
+    </div>
+    <div class="slider-handle" [style.left.%]="sliderPosition()">
+        <div class="handle-line"></div>
+        <div class="handle-circle">
+            <span class="handle-arrows">◀ ▶</span>
+        </div>
+    </div>
+</div>

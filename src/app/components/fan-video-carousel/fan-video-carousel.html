@@ -1,0 +1,53 @@
+<div class="video-carousel-container">
+    <!-- Left Arrow -->
+    <button class="carousel-arrow carousel-arrow-left" (click)="prevVideo()" [class.hidden]="currentVideoIndex() === 0"
+        aria-label="Önceki video">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+        </svg>
+    </button>
+
+    <!-- Carousel Track -->
+    <div class="carousel-track-wrapper">
+        <div class="carousel-track" [style.transform]="'translateX(' + (-currentVideoIndex() * 100) + '%)'">
+            @for (video of fanVideos; track $index) {
+            <div class="video-card" [attr.data-card-index]="$index">
+                <h3 class="fan-name">
+                    <span class="title-word video-title">{{ video.name }}</span>
+                </h3>
+                @if (video.subtitle) {
+                <span class="fan-subtitle title-word video-subtitle">{{ video.subtitle }}</span>
+                }
+                <div class="video-player-container" (click)="playVideo($event, $index)" role="button"
+                    [attr.aria-label]="video.name + ' videosunu oynat'">
+                    <video playsinline [attr.data-index]="$index">
+                        <source [src]="video.src" type="video/mp4">
+                        Tarayıcınız video oynatmayı desteklemiyor.
+                    </video>
+                    <div class="video-play-overlay" [class.hidden]="playingVideoIndex() === $index">
+                        <span class="material-symbols-outlined play-icon">play_circle</span>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Right Arrow -->
+    <button class="carousel-arrow carousel-arrow-right" (click)="nextVideo()"
+        [class.hidden]="currentVideoIndex() === fanVideos.length - 1" aria-label="Sonraki video">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+        </svg>
+    </button>
+</div>
+
+<!-- Carousel Dots -->
+<div class="carousel-dots" role="tablist" aria-label="Video navigasyonu">
+    @for (video of fanVideos; track $index) {
+    <button class="carousel-dot" [class.active]="currentVideoIndex() === $index" (click)="goToVideo($index)" role="tab"
+        [attr.aria-selected]="currentVideoIndex() === $index"
+        [attr.aria-label]="'Video ' + ($index + 1) + ': ' + video.name">
+    </button>
+    }
+</div>

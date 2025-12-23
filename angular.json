@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "birthday-site": {
+    "top-secret": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -89,10 +89,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "birthday-site:build:production"
+              "buildTarget": "top-secret:build:production"
             },
             "development": {
-              "buildTarget": "birthday-site:build:development"
+              "buildTarget": "top-secret:build:development"
             }
           },
           "defaultConfiguration": "development"
