@@ -215,7 +215,7 @@ export class App implements AfterViewInit, OnDestroy {
       ease: 'power1.inOut'
     });
 
-    gsap.to('.gift-card-glow', {
+    gsap.to('.valorant-glow', {
       scale: 1.1,
       opacity: 0.8,
       duration: 2,
