@@ -30,5 +30,10 @@ export const FAN_VIDEOS: FanVideo[] = [
         name: 'Berat Türkseveroğlu',
         subtitle: 'Yoldaş',
         src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766524969/Berat_T%C3%BCrksevero%C4%9Flu_bu6iei.mp4'
+    },
+    {
+        name: 'Ahmet Zafer Kaymaz',
+        subtitle: 'Haydi Media CEO',
+        src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766534002/Zafer_Abi_ozhbwq.mp4'
     }
 ];
