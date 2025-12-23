@@ -72,7 +72,7 @@ export class App implements AfterViewInit, OnDestroy {
 
     this.wheelHandler = (e: WheelEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('.slider-container') || target.closest('.video-carousel-container')) return;
+      if (target.closest('.slider-container')) return;
 
       e.preventDefault();
 
@@ -87,13 +87,13 @@ export class App implements AfterViewInit, OnDestroy {
 
     this.touchStartHandler = (e: TouchEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('.slider-container') || target.closest('.video-carousel-container')) return;
+      if (target.closest('.slider-container')) return;
       this.touchStartY = e.touches[0].clientY;
     };
 
     this.touchMoveHandler = (e: TouchEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('.slider-container') || target.closest('.video-carousel-container')) return;
+      if (target.closest('.slider-container')) return;
 
       if (this.isScrolling) return;
 

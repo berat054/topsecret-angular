@@ -24,7 +24,6 @@ export class FanVideoCarousel {
       const newIndex = this.currentVideoIndex() + 1;
       this.currentVideoIndex.set(newIndex);
       this.playingVideoIndex.set(null);
-      this.animateVideoCard(newIndex);
     }
   }
 
@@ -34,7 +33,10 @@ export class FanVideoCarousel {
       const newIndex = this.currentVideoIndex() - 1;
       this.currentVideoIndex.set(newIndex);
       this.playingVideoIndex.set(null);
-      this.animateVideoCard(newIndex);
+      // Sadece ilk videoya dönünce animasyon
+      if (newIndex === 0) {
+        this.animateVideoCard(newIndex);
+      }
     }
   }
 
@@ -43,7 +45,10 @@ export class FanVideoCarousel {
       this.pauseCurrentVideo();
       this.currentVideoIndex.set(index);
       this.playingVideoIndex.set(null);
-      this.animateVideoCard(index);
+      // Sadece ilk videoya dönünce animasyon
+      if (index === 0) {
+        this.animateVideoCard(index);
+      }
     }
   }
 
