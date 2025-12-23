@@ -1,6 +1,5 @@
 # 🔐 Top Secret
 
-> *Özel bir doğum günü sürprizi web sitesi*
 
 [![Angular](https://img.shields.io/badge/Angular-21-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -99,8 +98,3 @@ npx angular-cli-ghpages --dir=dist/top-secret/browser
 
 Bu proje özel kullanım içindir.
 
----
-
-<div align="center">
-  <sub>Made with ❤️ for a special birthday</sub>
-</div>
