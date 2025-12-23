@@ -25,5 +25,10 @@ export const FAN_VIDEOS: FanVideo[] = [
         name: 'İbrahim Yılmaz',
         subtitle: 'Adaray Şefi',
         src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766510358/%C4%B0brahim_Y%C4%B1lmaz_ysu3s2.mp4'
+    },
+    {
+        name: 'Berat Türkseveroğlu',
+        subtitle: 'Yoldaş',
+        src: 'https://res.cloudinary.com/dmfya9jbf/video/upload/v1766524969/Berat_T%C3%BCrksevero%C4%9Flu_bu6iei.mp4'
     }
 ];
