@@ -1,33 +1,6 @@
 <div class="gift-box-container">
-    <!-- Gift Box (Initial State) -->
-    <div class="gift-box" [class.opened]="isBoxOpened()" (click)="openBox()" 
-         *ngIf="!isBoxOpened()" role="button" aria-label="Hediye kutusunu aç">
-        
-        <!-- Box Lid -->
-        <div class="box-lid">
-            <div class="lid-top"></div>
-            <div class="lid-bow">
-                <div class="bow-left"></div>
-                <div class="bow-right"></div>
-                <div class="bow-center"></div>
-            </div>
-        </div>
-        
-        <!-- Box Body -->
-        <div class="box-body">
-            <div class="box-ribbon-vertical"></div>
-            <div class="box-ribbon-horizontal"></div>
-        </div>
-        
-        <div class="box-hint">
-            <span class="radianite-icon">◆</span>
-            Kutuyu aç
-            <span class="radianite-icon">◆</span>
-        </div>
-    </div>
-
-    <!-- Card (After Box Opens) -->
-    <div class="gift-card-wrapper" *ngIf="isBoxOpened()" [class.revealed]="isBoxOpened()"
+    <!-- Card (Directly visible, no box) -->
+    <div class="gift-card-wrapper revealed"
          (click)="flipCard()" role="button" aria-label="Hediye kartını çevirmek için tıklayın"
          [attr.aria-pressed]="isCardFlipped()">
         
